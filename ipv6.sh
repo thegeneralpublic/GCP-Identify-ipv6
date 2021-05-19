@@ -1,7 +1,7 @@
 #!bin/sh
 for org in `cat org`;
 do
-    export project =`(gcloud beta projects list)`
+    export project =`gcloud beta projects list --format="value(projectId)"`
     echo $project > project
     for i in `cat project`;
        do

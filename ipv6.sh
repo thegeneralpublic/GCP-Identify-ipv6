@@ -10,6 +10,5 @@ do
          export ipv6 = `(gcloud compute addresses list --filter=ipVersion:IPV6)`
          echo $ipv6 > ipv6
          done
-    done
     echo "break"
 done

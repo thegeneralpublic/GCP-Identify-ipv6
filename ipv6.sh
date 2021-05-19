@@ -1,14 +1,11 @@
 #!bin/sh
-for org in `cat org`;
+for project in `cat projects_list`;
 do
-    export project =`gcloud beta projects list --format="value(projectId)"`
-    echo $project > project
-    for i in `cat project`;
-       do
-         gcloud config set project $i
-         echo " deleting the org iam custom role $j with the service/user account $i"
-         export ipv6 = `(gcloud compute addresses list --filter=ipVersion:IPV6)`
-         echo $ipv6 > ipv6
-         done
-    echo "break"
+    echo "========================================"
+    tput rev; echo "project_id: $project" ; tput sgr0
+    echo "external_ips:
+    `gcloud compute addresses list --filter=ipVersion:IPV6 --project=$project`"
+    echo "forwarding_rules:
+    `gcloud compute forwarding-rules list --filter=ipVersion:IPV6 --project=$project`"
+    echo "========================================"
 done
